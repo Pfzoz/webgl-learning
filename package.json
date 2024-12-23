@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/Pfzoz/webgl-learning/issues"
   },
-  "homepage": "https://github.com/Pfzoz/webgl-learning#readme"
+  "homepage": "https://github.com/Pfzoz/webgl-learning#readme",
+  "dependencies": {
+    "three": "^0.171.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.5"
+  }
 }
