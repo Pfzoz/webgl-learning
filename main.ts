@@ -12,4 +12,18 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-renderer.setViewport();
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+const clock = new THREE.Clock();
+scene.add(cube);
+
+camera.position.z = 5;
+
+function animate() {
+    cube.rotateY(clock.getDelta() * 1);
+    cube.rotateX(clock.getDelta() * 1);
+    renderer.render(scene, camera);
+}
+
+renderer.setAnimationLoop(animate);
