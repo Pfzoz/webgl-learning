@@ -1,0 +1,22 @@
+{
+  "name": "webgl-learning",
+  "version": "1.0.0",
+  "description": "A repository designed to learn WebGL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pfzoz/webgl-learning.git"
+  },
+  "keywords": [
+    "webgl"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pfzoz/webgl-learning/issues"
+  },
+  "homepage": "https://github.com/Pfzoz/webgl-learning#readme"
+}
