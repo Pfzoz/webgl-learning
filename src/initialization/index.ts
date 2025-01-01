@@ -1,8 +1,8 @@
-import { cube } from "../objects/cube";
+import { champion } from "../objects/actors/champion";
 import { camera, gameDiv, renderer, scene } from "../primitives";
 
 function load_objects() {
-    scene.add(cube);
+    scene.add(champion);
 }
 
 function onResize() {
