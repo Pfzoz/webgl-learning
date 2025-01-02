@@ -1,30 +1,30 @@
 {
-  "name": "webgl-learning",
-  "version": "1.0.0",
-  "description": "A repository designed to learn WebGL.",
-  "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Pfzoz/webgl-learning.git"
-  },
-  "keywords": [
-    "webgl"
-  ],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Pfzoz/webgl-learning/issues"
-  },
-  "homepage": "https://github.com/Pfzoz/webgl-learning#readme",
-  "dependencies": {
-    "three": "^0.171.0"
-  },
-  "devDependencies": {
-    "@types/three": "^0.171.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.5"
-  }
+    "name": "webgl-learning",
+    "version": "1.0.0",
+    "description": "A repository designed to learn WebGL.",
+    "main": "index.js",
+    "scripts": {
+        "dev": "vite"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Pfzoz/webgl-learning.git"
+    },
+    "keywords": [
+        "webgl"
+    ],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Pfzoz/webgl-learning/issues"
+    },
+    "homepage": "https://github.com/Pfzoz/webgl-learning#readme",
+    "dependencies": {
+        "three": "^0.171.0"
+    },
+    "devDependencies": {
+        "@types/three": "^0.171.0",
+        "typescript": "^5.7.2",
+        "vite": "^6.0.5"
+    }
 }

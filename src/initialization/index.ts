@@ -9,6 +9,7 @@ function onResize() {
     const newWidth = gameDiv.getBoundingClientRect().width;
     const newHeight = gameDiv.getBoundingClientRect().height;
     camera.aspect = newWidth / newHeight;
+    camera.updateProjectionMatrix();
     renderer.setSize(newWidth, newHeight);
 }
 

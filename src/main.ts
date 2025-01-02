@@ -5,7 +5,6 @@ import { champion } from "./objects/actors/champion";
 
 function main_loop() {
     const delta = clock.getDelta();
-
     champion.rotateX(delta).rotateY(delta);
     renderer.render(scene, camera);
 }
