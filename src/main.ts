@@ -10,6 +10,8 @@ import {
 import init from "./initialization";
 import { champion } from "./objects/actors/champion";
 
+let pickedChampion: boolean = false;
+
 function onClick(event) {
     const mouse = new THREE.Vector2();
     const boundingClientRect = gameDiv.getBoundingClientRect();
@@ -18,13 +20,12 @@ function onClick(event) {
     mouse.x = ((event.clientX - startWidth) / boundingClientRect.width) * 2 - 1;
     mouse.y =
         -((event.clientY - startHeight) / boundingClientRect.height) * 2 + 1;
-    console.log(mouse.x, mouse.y);
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObject(champion);
-    if (intersects.length > 0) {
-        console.log("Picked champion!");
-    } else {
-        console.log("Missed champion!");
+    if (intersects.length > 0 && !pickedChampion) {
+        pickedChampion = true;
+    } else if (pickedChampion) {
+        pickedChampion = false;
     }
 }
 

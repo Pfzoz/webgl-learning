@@ -1,8 +1,10 @@
 import { champion } from "../objects/actors/champion";
+import { squire } from "../objects/actors/squire";
 import { camera, gameDiv, renderer, scene } from "../primitives";
 
 function load_objects() {
     scene.add(champion);
+    scene.add(squire);
 }
 
 function onResize() {
@@ -21,4 +23,7 @@ export default function init() {
     camera.position.z = 5;
 
     load_objects();
+
+    champion.position.y = -1.3;
+    squire.position.y = 1.3;
 }

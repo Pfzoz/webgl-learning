@@ -3,7 +3,12 @@ import CardType from "../../enums/cardtype";
 import { diamonds_5_texture, spades_10_texture } from "../../textures";
 import { white } from "../../colors";
 
-const cardGeometry = new THREE.BoxGeometry(2 * (2 / 3), 2, 0.01);
+const cardHeight = 2;
+const cardGeometry = new THREE.BoxGeometry(
+    cardHeight * (2 / 3),
+    cardHeight,
+    0.01,
+);
 
 const cardTextureMap: Record<CardType, THREE.Texture> = {
     "0": spades_10_texture,
