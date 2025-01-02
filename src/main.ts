@@ -11,7 +11,6 @@ import init from "./initialization";
 import {
     champion,
     championAnimationMixer,
-    championRotationAction,
     championShakyAction,
 } from "./objects/actors/champion";
 
