@@ -8,7 +8,12 @@ import {
     scene,
 } from "./primitives";
 import init from "./initialization";
-import { champion } from "./objects/actors/champion";
+import {
+    champion,
+    championAnimationMixer,
+    championRotationAction,
+    championShakyAction,
+} from "./objects/actors/champion";
 
 let pickedChampion: boolean = false;
 
@@ -24,13 +29,16 @@ function onClick(event) {
     const intersects = raycaster.intersectObject(champion);
     if (intersects.length > 0 && !pickedChampion) {
         pickedChampion = true;
+        championShakyAction.play();
     } else if (pickedChampion) {
         pickedChampion = false;
+        championShakyAction.stop();
     }
 }
 
 function main_loop() {
     const delta = clock.getDelta();
+    championAnimationMixer.update(delta);
     renderer.render(scene, camera);
 }
 
