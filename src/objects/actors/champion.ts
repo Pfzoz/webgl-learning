@@ -1,7 +1,6 @@
-import * as THREE from "three";
+import { card } from "../meshes/card";
+import CardType from "../../enums/cardtype";
 
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const champion = new THREE.Mesh(geometry, material);
+const champion = card(CardType.SPADES_10);
 
 export { champion };

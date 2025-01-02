@@ -1,13 +1,38 @@
 import * as THREE from "three";
-import { camera, clock, renderer, scene } from "./primitives";
+import {
+    camera,
+    clock,
+    gameDiv,
+    raycaster,
+    renderer,
+    scene,
+} from "./primitives";
 import init from "./initialization";
 import { champion } from "./objects/actors/champion";
 
+function onClick(event) {
+    const mouse = new THREE.Vector2();
+    const boundingClientRect = gameDiv.getBoundingClientRect();
+    const startWidth = window.innerWidth - boundingClientRect.width;
+    const startHeight = window.innerHeight - boundingClientRect.height;
+    mouse.x = ((event.clientX - startWidth) / boundingClientRect.width) * 2 - 1;
+    mouse.y =
+        -((event.clientY - startHeight) / boundingClientRect.height) * 2 + 1;
+    console.log(mouse.x, mouse.y);
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(champion);
+    if (intersects.length > 0) {
+        console.log("Picked champion!");
+    } else {
+        console.log("Missed champion!");
+    }
+}
+
 function main_loop() {
     const delta = clock.getDelta();
-    champion.rotateX(delta).rotateY(delta);
     renderer.render(scene, camera);
 }
 
 init();
+renderer.domElement.addEventListener("click", onClick);
 renderer.setAnimationLoop(main_loop);

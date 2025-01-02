@@ -12,5 +12,6 @@ const camera = new THREE.PerspectiveCamera(
 );
 const clock = new THREE.Clock();
 const renderer = new THREE.WebGLRenderer();
+const raycaster = new THREE.Raycaster();
 
-export { scene, camera, renderer, clock, gameDiv };
+export { scene, camera, renderer, clock, gameDiv, raycaster };
