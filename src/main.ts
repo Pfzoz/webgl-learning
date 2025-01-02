@@ -16,7 +16,7 @@ import {
 
 let pickedChampion: boolean = false;
 
-function onClick(event) {
+function onClick(event: MouseEvent) {
     const mouse = new THREE.Vector2();
     const boundingClientRect = gameDiv.getBoundingClientRect();
     const startWidth = window.innerWidth - boundingClientRect.width;
