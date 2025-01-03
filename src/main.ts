@@ -19,6 +19,7 @@ import {
     squireAdvanceReverseAction,
     squireAnimationMixer,
 } from "./objects/actors/squire";
+import { dagger, daggerLoaded } from "./models/dagger";
 
 let pickedChampion: boolean = false;
 let attacking: boolean = false;
@@ -27,6 +28,9 @@ function onClick(event: MouseEvent) {
     const mouse = new THREE.Vector2();
     if (attacking) {
         return;
+    }
+    if (daggerLoaded) {
+        dagger.translateZ(0.1);
     }
     const boundingClientRect = gameDiv.getBoundingClientRect();
     const startWidth = window.innerWidth - boundingClientRect.width;

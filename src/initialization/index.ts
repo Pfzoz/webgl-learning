@@ -1,10 +1,15 @@
+import { daggerLoaded, loadDagger } from "../models/dagger";
 import { champion } from "../objects/actors/champion";
 import { squire } from "../objects/actors/squire";
 import { camera, gameDiv, renderer, scene } from "../primitives";
+import * as THREE from "three";
 
 function load_objects() {
+    const light = new THREE.AmbientLight(0xffffff, 12); // Soft white light
+    scene.add(light);
     scene.add(champion);
     scene.add(squire);
+    loadDagger();
 }
 
 function onResize() {
