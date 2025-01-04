@@ -13,5 +13,9 @@ const camera = new THREE.PerspectiveCamera(
 const clock = new THREE.Clock();
 const renderer = new THREE.WebGLRenderer();
 const raycaster = new THREE.Raycaster();
+const listener = new THREE.AudioListener();
+camera.add(listener);
 
-export { scene, camera, renderer, clock, gameDiv, raycaster };
+const globalSound = new THREE.Audio(listener);
+
+export { scene, camera, renderer, clock, gameDiv, raycaster, globalSound };

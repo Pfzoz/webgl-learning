@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-const period = 1.25;
+const period = 0.7;
 const advanceDelta = 0.05;
 const trackName = ".position[y]";
 const advanceTrack = new THREE.NumberKeyframeTrack(

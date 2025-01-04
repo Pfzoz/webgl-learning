@@ -16,17 +16,17 @@ const cardTextureMap: Record<CardType, THREE.Texture> = {
 };
 
 const genericMaterials = [
-    new THREE.MeshBasicMaterial({ color: white }), // Left edge
-    new THREE.MeshBasicMaterial({ color: white }), // Right edge
-    new THREE.MeshBasicMaterial({ color: white }), // Top edge
-    new THREE.MeshBasicMaterial({ color: white }), // Bottom edge
+    new THREE.MeshLambertMaterial({ color: white }), // Left edge
+    new THREE.MeshLambertMaterial({ color: white }), // Right edge
+    new THREE.MeshLambertMaterial({ color: white }), // Top edge
+    new THREE.MeshLambertMaterial({ color: white }), // Bottom edge
 ];
 
 const card = (cardType: CardType): THREE.Mesh => {
     const specificMaterials = [
         ...genericMaterials,
-        new THREE.MeshBasicMaterial({ map: cardTextureMap[cardType] }),
-        new THREE.MeshBasicMaterial({ color: white }),
+        new THREE.MeshLambertMaterial({ map: cardTextureMap[cardType] }),
+        new THREE.MeshLambertMaterial({ color: white }),
     ];
     const mesh = new THREE.Mesh(cardGeometry, specificMaterials);
 

@@ -18,19 +18,42 @@ import {
     squire,
     squireAdvanceReverseAction,
     squireAnimationMixer,
+    squireFadeAction,
 } from "./objects/actors/squire";
-import { dagger, daggerLoaded } from "./models/dagger";
+import {
+    dagger,
+    daggerFadeAction,
+    daggerLoaded,
+    daggerMixer,
+    daggerReturnAction,
+    daggerStabAction,
+    setDaggerOnLoad,
+} from "./models/dagger";
+import { playSlashSound } from "./audio/slash";
 
 let pickedChampion: boolean = false;
 let attacking: boolean = false;
+let attacked: boolean = false;
+
+function onKeyPress(event: KeyboardEvent) {
+    if (event.key === "r") {
+        dagger.visible = false;
+        daggerStabAction.stop();
+        daggerStabAction.reset();
+        daggerFadeAction.stop();
+        daggerFadeAction.reset();
+        squireFadeAction.stop();
+        squireFadeAction.reset();
+        daggerReturnAction.stop();
+        daggerReturnAction.reset();
+        attacked = false;
+    }
+}
 
 function onClick(event: MouseEvent) {
     const mouse = new THREE.Vector2();
-    if (attacking) {
+    if (attacking || !daggerLoaded || attacked) {
         return;
-    }
-    if (daggerLoaded) {
-        dagger.translateZ(0.1);
     }
     const boundingClientRect = gameDiv.getBoundingClientRect();
     const startWidth = window.innerWidth - boundingClientRect.width;
@@ -47,20 +70,9 @@ function onClick(event: MouseEvent) {
         const intersectsSquire = raycaster.intersectObject(squire);
         if (intersectsSquire.length > 0) {
             attacking = true;
+
             championAdvanceAction.play();
             squireAdvanceReverseAction.play();
-            championAdvanceAction
-                .getMixer()
-                .addEventListener("finished", ({ action }) => {
-                    if (action.getClip().name === "advance") {
-                        championAdvanceAction.stop();
-                        championAdvanceAction.reset();
-                        squireAdvanceReverseAction.stop();
-                        squireAdvanceReverseAction.reset();
-                        attacking = false;
-                    }
-                });
-            console.log("play!");
         }
         championShakyAction.stop();
         pickedChampion = false;
@@ -71,9 +83,45 @@ function main_loop() {
     const delta = clock.getDelta();
     championAnimationMixer.update(delta);
     squireAnimationMixer.update(delta);
+    if (daggerLoaded) {
+        daggerMixer.update(delta);
+    }
     renderer.render(scene, camera);
 }
 
+championAdvanceAction.getMixer().addEventListener("finished", ({ action }) => {
+    if (action.getClip().name === "advance") {
+        championAdvanceAction.stop();
+        championAdvanceAction.reset();
+        squireAdvanceReverseAction.stop();
+        squireAdvanceReverseAction.reset();
+        dagger.visible = true;
+        daggerStabAction.play();
+    }
+});
+
+squireFadeAction.getMixer().addEventListener("finished", ({ action }) => {
+    if (action.getClip().name === "fade") {
+        setTimeout(() => {
+            daggerReturnAction.play();
+            attacked = true;
+            attacking = false;
+        }, 300);
+    }
+});
+
+setDaggerOnLoad(() => {
+    daggerStabAction.getMixer().addEventListener("finished", ({ action }) => {
+        if (action.getClip().name === "stab") {
+            playSlashSound();
+            setTimeout(() => {
+                squireFadeAction.play();
+            }, 300);
+        }
+    });
+});
+
 init();
+document.addEventListener("keydown", onKeyPress, false);
 renderer.domElement.addEventListener("click", onClick);
 renderer.setAnimationLoop(main_loop);

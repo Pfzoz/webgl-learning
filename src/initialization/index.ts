@@ -5,7 +5,7 @@ import { camera, gameDiv, renderer, scene } from "../primitives";
 import * as THREE from "three";
 
 function load_objects() {
-    const light = new THREE.AmbientLight(0xffffff, 12); // Soft white light
+    const light = new THREE.AmbientLight(0xffffff, 4); // Soft white light
     scene.add(light);
     scene.add(champion);
     scene.add(squire);
